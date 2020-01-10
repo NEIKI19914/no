@@ -1,0 +1,932 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                       Notes                          | #
+# +------------------------------------------------------+ #
+############################################################
+
+# 如果要在此文档中使用特殊字符（如重音字母），则必须将文件保存为utf-8，而不是ansi。
+# 如果在加载Essentials时收到错误，请确保：
+#   - 没有标签：yaml只允许空格
+#   - 确保缩进是正确的：yaml层次结构完全基于缩进
+#   - 你已经“转义”了文本中的所有撇号：如果你想写“不要”，例如，写“不要”代替（注意双撇号）
+#   - 带符号的文本用单引号或双引号括起来
+
+# 如果有问题，请加入Essentials帮助支持频道: http://tiny.cc/EssentialsChat
+
+# Version 2.17.1.15
+
+# KITS ARE NOW IN THE kits.yml FILE
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Essentials (全局)                  | #
+# +------------------------------------------------------+ #
+############################################################
+
+# 介于0-9或a-f之间的颜色代码。设置为“无”可禁用。
+ops-name-color: '4'
+
+# 为所有昵称加前缀的字符，以便您知道它们不是真正的用户名。
+nickname-prefix: '~'
+
+# 昵称中允许的最大长度。昵称前缀包含在其中。
+max-nick-length: 15
+
+# 不能在昵称中使用的短语列表。您可以在这里包含正则表达式。
+# 使用 essentials.nick.blacklist.bypass 的用户可以绕过此筛选.
+nick-blacklist:
+#- Notch
+#- '^Dinnerbone'
+
+# 启用此选项时，昵称长度检查将排除播放机名称中的颜色代码。
+# 即：“&6notch”有7个字符（2个字符是颜色代码的一部分），如果此选项设置为true，则使用长度为5的字符
+ignore-colors-in-max-nick-length: false
+
+# 启用此选项后，将不显示隐藏用户的显示名称。这会阻止玩家
+# 当他们消失的时候能看到他们在网上。
+hide-displayname-in-vanish: true
+
+# 如果你有其他的插件，可以修改用户的显示名，那么就禁用它。
+change-displayname: false
+
+# 当这个选项开启时,在玩家显示的名字上添加的前缀或尾缀,会被显示在在线列表(TAB)中.
+# 上面的"change-displayname"必须是true才有效.
+#change-playerlist: true
+
+# 当不使用EssentialsChat.jar时，强制essentials将前缀和后缀从权限插件添加到displayname。
+# 如果使用EssentialsChat.jar，则忽略该设置，默认值为“true”。
+# change-displayname(上面)的值必须为true。
+# 除非您知道您在做什么，否则不要编辑此设置!
+#add-prefix-suffix: false
+
+# 启用此选项后，播放器列表中将显示播放器前缀。
+# 这个功能只适用于Minecraft 1.8或更高版本。
+# 更改播放器列表的这个值必须为true
+#add-prefix-in-playerlist: true
+
+# 启用此选项后，播放器列表中将显示播放器后缀。
+# 这个功能只适用于Minecraft 1.8或更高版本。
+# 更改播放器列表的这个值必须为true
+#add-suffix-in-playerlist: true
+
+# 如果传送目的地不安全，玩家是否应该传送到最近的安全地点？
+# 如果设置为true，则Essentials将尝试将玩家传送到接近预定目的地的位置。
+# 如果设置为false，则尝试传送到不安全位置的传送将被取消，并发出警告。
+teleport-safety: true
+
+# 这将强制禁用远程传输安全检查，如果尝试远程传输到不安全的位置，则不会发出警告。
+# 传送安全和这个选项需要设置为真，以强制传送到危险的地点。
+force-disable-teleport-safety: false
+
+# 传送功能的冷却时间(以秒为单位),如/home, /tp等命令.
+teleport-cooldown: 180
+
+# 在用户实际传送之前的延迟，以秒为单位。如果用户在此时间段内移动或受到攻击，则传送被取消。
+teleport-delay: 0
+
+# 延迟，以秒为单位，一个玩家在被命令传送后不能被其他玩家攻击。
+# 这样也可以防止玩家攻击其他玩家。
+teleport-invulnerability: 4
+
+# 是否使所有的传送到块的中心；在那里x和z坐标十进制变成。
+teleport-to-center: true
+
+# /heal或/feed尝试之间所需的延迟（秒）。
+heal-cooldown: 60
+
+# 近半径
+# 默认半径为/接近
+# 以前用聊天半径，但我们要把它分开。
+near-radius: 200
+
+# 禁止作弊命令/give, /item调出的物品黑名单列表.
+# 例如 item-spawn-blacklist: 46,11,10
+item-spawn-blacklist:
+
+# 如果需要基于权限的项目生成规则，请将此设置为true。
+# 注：以上黑名单将被忽略。
+# 示例权限（这些权限位于权限管理器中）：
+#  - essentials.itemspawn.item-all
+#  - essentials.itemspawn.item-[itemname]
+#  - essentials.itemspawn.item-[itemid]
+#  - essentials.give.item-all
+#  - essentials.give.item-[itemname]
+#  - essentials.give.item-[itemid]
+#  - essentials.unlimited.item-all
+#  - essentials.unlimited.item-[itemname]
+#  - essentials.unlimited.item-[itemid]
+#  - essentials.unlimited.item-bucket # Unlimited liquid placing
+#
+# 有关详细信息，请访问 http://wiki.ess3.net/wiki/Command_Reference/ICheat#Item.2FGive
+permission-based-item-spawn: false
+
+# 使用/spawnmob命令一次性生成生物的最大数量.
+spawnmob-limit: 10
+
+# 当OP使用"/lightning"(闪电)时是否提醒玩家,
+warn-on-smite: true
+
+# 如果目标库存已经满了，我们是不是应该减少库存而不是增加库存？
+drop-items-if-full: false
+
+# 基本邮件通知
+# 如果玩家没有新邮件，我们应该通知他们吗？
+notify-no-new-mail: true
+
+# 指定播放机每次收到邮件通知之间的持续时间（秒）。
+# 对于邮件流量很大的服务器很有用。
+notify-player-of-mail-cooldown: 60
+
+# 服务器公告 和 服务器规定,现在分别存储在 motd.txt 和 rules.txt 中设置.
+
+# 当命令与另一个插件冲突时，默认情况下，Essentials将尝试强制另一个插件优先。
+# 此列表中的命令将告诉Essentials“ not give up”该命令给其他插件。
+# 在这种状态下，哪个插件“wins”看起来几乎是随机的。
+#
+# 如果有两个插件具有相同的命令，并且希望强制Essentials接管，则需要一个别名。
+# To force essentials to take 'god' alias 'god' to 'egod'.强制必需品将“god”别名“god”改为“egod”。
+# See http://wiki.bukkit.org/Commands.yml#aliases for more information.
+
+overridden-commands:
+#  - god
+#  - info
+
+# 在此禁用命令将阻止Essentials处理命令，这不会影响命令冲突。
+# 您不必禁用其他插件中使用的命令，它们将自动获得优先级。
+# 查看 http://wiki.bukkit.org/Commands.yml#aliases 将命令映射到其他插件。
+disabled-commands:
+#  - nick
+#  - clear
+
+# 这些命令是当开启了/socialspy命令时可以看到的玩家私聊
+# 你可以添加一些来自其他插件的命令
+# 或者移除一些你不想看到的私聊命令
+socialspy-commands:
+  - msg
+  - w
+  - r
+  - mail
+  - m
+  - t
+  - whisper
+  - emsg
+  - tell
+  - er
+  - reply
+  - ereply
+  - email
+  - action
+  - describe
+  - eme
+  - eaction
+  - edescribe
+  - etell
+  - ewhisper
+  - pm
+
+# 来自静音玩家的私人和公共消息是否应该出现在社交间谍中。
+# 如果是这样的话，它们将与普通玩家发送的不同。
+socialspy-listen-muted-players: true
+
+# 静音命令
+# 当播放器静音时，这些命令将被禁用。
+# 使用“*”禁用每个命令。
+# 默认情况下，Essentials已禁用Essentials消息传递命令。
+# 它只应用根命令，而不关心其后的参数 (it sees /f chat the same as /f)
+mute-commands:
+  - f
+  - kittycannon
+ # - '*'
+
+# 如果不希望使用权限系统，可以在下面定义“player perms”列表。
+# 如果使用受支持的权限系统，则此列表无效。
+# 如果您使用的是不受支持的权限系统，只需删除此部分。
+# 白名单默认情况下您希望给玩家的命令和权限 (everything else is op only).
+# 这些是没有“essentials”部分的权限。
+#
+# 若要启用此功能，请将 use-bukkit-permissions 设置为 false.
+player-commands:
+  - afk
+  - afk.auto
+  - back
+  - back.ondeath
+  - balance
+  - balance.others
+  - balancetop
+  - build
+  - chat.color
+  - chat.format
+  - chat.shout
+  - chat.question
+  - compass
+  - depth
+  - delhome
+  - getpos
+  - geoip.show
+  - help
+  - helpop
+  - home
+  - home.others
+  - ignore
+  - info
+  - itemdb
+#  - kit
+#  - kits.tools
+  - list
+  - mail
+  - mail.send
+  - me
+  - motd
+  - msg
+  - msg.color
+  - nick
+  - near
+  - pay
+  - ping
+  - protect
+  - r
+  - rules
+  - realname
+  - seen
+#  - sell
+  - sethome
+  - setxmpp
+  - signs.create.protection
+  - signs.create.trade
+  - signs.break.protection
+  - signs.break.trade
+  - signs.use.balance
+  - signs.use.buy
+  - signs.use.disposal
+  - signs.use.enchant
+  - signs.use.free
+  - signs.use.gamemode
+  - signs.use.heal
+  - signs.use.info
+  - signs.use.kit
+  - signs.use.mail
+  - signs.use.protection
+  - signs.use.repair
+  - signs.use.sell
+  - signs.use.time
+  - signs.use.trade
+  - signs.use.weather
+  - spawn
+#  - suicide
+  - time
+  - tpa
+  - tpaccept
+  - tpahere
+  - tpdeny
+  - warp
+#  - world
+#  - worth
+#  - xmpp
+  - signs.use.warp
+  - setHome.multiple
+
+# 使用此选项可以强制基于超级项的权限处理程序，而不考虑检测到的已安装perms插件。
+# 如果您希望自定义权限插件具有基于超级术语的权限（带有通配符），则此选项非常有用。
+# 如果希望使用上面的“player commands”部分使用essentialsx的内置权限，请将其设置为false。
+# 默认值为true。
+use-bukkit-permissions: true
+
+# 当启用此选项时，一次性使用工具包(即。延迟< 0)将是
+# 当玩家不能再使用/kit时将移除
+skip-used-one-time-kits-from-kit-list: false
+
+# 确定/createkit命令的功能。
+# 如果这是真的，/createkit将给用户一个与kit代码的链接。
+# 如果为false，/createkit将直接将工具包添加到kits.yml配置文件中。
+#
+pastebin-createkit: false
+
+# Essentials 木牌控制
+# 查看网页 http://wiki.ess3.net/wiki/Sign_Tutorial 可以了解如何使用这些.
+# 移除#可以激活相应的木牌功能. 想禁用所有的木牌功能, 使用命令/remove 每个牌子.
+# 当其他任何类型木牌启用时,木牌彩字支持将默认启用.
+# 木牌彩字并不是真实的彩字, 是使用颜色代码实现, 当拥有木牌彩字权限时才会有效.
+
+enabledSigns:
+  - color
+  - balance
+  - buy
+  - sell
+  - trade
+  - free
+  - disposal
+  - warp
+  - kit
+  - mail
+  - enchant
+  #- gamemode
+  - heal
+  #- info
+  #- spawnmob
+  - repair
+  - time
+  #- weather
+
+# 每名玩家每秒可以与基本标志交互多少次。
+# 值应该在1-20之间，20实际上是无滞后保护。
+# 较低的数据将减少延迟的可能性，但可能会惹恼玩家。
+sign-use-per-second: 4
+
+# 允许在1.13及以上的预先存在的标志上使用项目标识。
+# 您不能在新符号上使用项目id，但这将允许玩家与该符号进行交互
+# 在1.13之前。
+allow-old-id-signs: false
+
+# 基本标志名称列表不应受到保护。此功能在以下情况下特别有用
+# 另一个插件提供了EssentialSx提供的标志，但Essentials重写了它。
+# 例如，如果一个插件提供了一个[kit]符号，并且您希望使用它们而不是
+# Essentials的，然后简单地在下面添加工具包，Essentials不会保护它。
+#
+# See https://github.com/drtshock/Essentials/pull/699 for more information.
+unprotected-sign-names:
+  #- kit
+
+# 备份在禁用保存时运行批处理/bash命令。
+backup:
+  # 间隔（分钟）。
+  interval: 30
+  # 除非在此处添加有效的备份命令或脚本，否则此功能将无效。
+  # 使用“全部保存”只需强制常规的世界保存而无需备份。
+  # 指令: 'rdiff-backup World1 backups/World1'
+
+# 将此设置为true可启用每个warp的权限。
+per-warp-permission: false
+
+# 按组对/list命令的输出进行排序。
+# 通过在此处定义所需的行为，可以隐藏和合并/list中显示的组。
+# 可以在wiki上找到详细的说明和示例: http://wiki.ess3.net/wiki/List
+list:
+    # 要合并组，请列出要合并的组
+    #Staff: owner admin moderator
+    Admins: owner admin
+    # 要限制组，请设置最大用户限制
+    #builder: 20
+    # 要隐藏组，请将组设置为隐藏
+    #default: hidden
+    # 取消对下面一行的注释，只列出没有分组的所有玩家
+    #Players: '*'
+
+# 是否在服务器窗口上显示更多的输出信息.
+debug: false
+
+# 设置所有消息的语言文件.
+# 如果没有设置,将使用默认语言文件.
+# 例如,使用中文语言文件,设置locale为zh,即可使用语言文件"messages_zh.properties"
+# 不要忘记去除"#"
+# 查看更多信息,请访问 http://wiki.ess3.net/wiki/Locale
+locale: zh
+
+# 当用户离开服务器时关闭god模式
+remove-god-on-disconnect: false
+
+# Auto-AFK
+# 在此超时（秒）后，用户将被设置为AFK。
+# 此功能要求玩家具有Essentials.afk.auto节点。
+# 设置为-1不超时。
+auto-afk: 300
+
+# Auto-AFK Kick
+# 在此超时（秒）后，用户将被踢出服务器。
+# Essentials.afk.KickExempt节点覆盖此功能。
+# 设置为-1不超时。
+auto-afk-kick: -1
+
+# 如果要冻结玩家，如果玩家是AFK，则将此设置为true。
+# 其他玩家或怪物无法将玩家推出AFK模式。
+# 这也将为AFK玩家启用临时上帝模式。
+# 玩家必须使用命令/afk才能离开afk模式。
+freeze-afk-players: false
+
+# 当玩家是AFK的时候，他应该能够捡起物品吗？
+# 当你不想让人们在黑帮陷阱里闲逛时，启用这个。
+disable-item-pickup-while-afk: false
+
+# 此设置控制玩家在交互时是否标记为活动。
+# 当此设置为false时，玩家需要使用/afk命令手动取消afk。
+cancel-afk-on-interact: true
+
+# 我们应该在玩家移动时自动移除AFK状态吗？
+# 无论此设置如何，在聊天/命令时，玩家将从AFK中删除。
+# 禁用此选项可减少服务器延迟。
+cancel-afk-on-move: true
+
+# 当其他玩家试图睡觉时，应该忽略AFK玩家吗？
+# 如果此设置为false，则如果某些玩家是afk，则无法跳过该夜晚。
+# 具有权限节点Essentials.SleepingIgnored的用户将始终被忽略。
+sleep-ignores-afk-players: true
+
+# 当玩家是AFK时设置他们的列表名。默认情况下，这不是指定
+# 不应干扰AFK播放器的列表名称。
+# 您可以使用颜色代码，使用{username}玩家的名称或{player}玩家的显示名称。
+afk-list-name: "none"
+
+# 你可以在这里禁用MC的死亡信息。
+death-messages: true
+
+# 有权限的玩家是否可以默默地加入和离开？
+# 如果启用了Essentials.silentJoin和Essentials.silentQuit权限，则可以对其进行控制。
+# 此外，拥有Essentials.silentJoin.Vanish的人将在加入时消失。
+allow-silent-join-quit: false
+
+# 可以在此处设置自定义联接消息，设置为“无”可禁用。
+# 您可以使用颜色代码，使用{username}播放器的名称或{player}播放器的显示名称。
+custom-join-message: " "
+
+# 您可以在此处设置自定义退出消息，设置为“none”禁用。
+# 您可以使用颜色代码，使用{username}播放器的名称或{player}播放器的显示名称。
+custom-quit-message: " "
+
+# 添加世界到这个列表，如果你想自动禁用那里的上帝模式。
+no-god-in-worlds:
+#  - world_nether
+
+# 设置为true可启用每个世界的权限，以便使用Essentials命令在世界之间进行远程传输。
+# 这适用于 /world, /back, /tp[a|o][here|all],但不适用于 warps.
+# 允许某人传送到一个世界  essentials.worlds.<worldname>
+# 这不会影响/home命令，下面有一个单独的切换。
+world-teleport-permissions: false
+
+# 如果数量参数在/item或/give中省略，则给出的项目数。
+# 如果此数字小于1，则给出最大堆栈大小。如果堆太大。
+#未启用，任何大于最大堆栈大小的数字将导致多个堆栈。
+default-stack-size: -1
+
+# 超大堆栈是忽略正常最大堆栈大小的堆栈。
+# 它们可以通过使用 /give and /item, 如果玩家有 essentials.oversizedstacks 权限.
+# 一个超大的堆栈中应该有多少项？
+oversized-stacksize: 64
+
+# 允许修理附魔盔甲和武器
+# 如果设置为false,你仍然可以允许某些玩家修理.
+# 使用essentials.repair.enchanted权限
+repair-enchanted: true
+
+# 在kits和物品生成时,允许 '不安全的' 附魔.
+# 警告: 混乱结合和超过常规等级的附魔可能导致客户端,服务端或者插件崩溃.
+unsafe-enchantments: false
+
+#您想让Essentials跟踪以前的位置吗 /back 在teleport listener中?
+#如果将此设置为true，则使用teleport的任何插件都将注册上一个位置。
+register-back-in-listener: false
+
+#延迟等待用户登录后造成攻击伤害。
+login-attack-delay: 5
+
+#设置最大飞行速度，值范围从0.1到1.0
+max-fly-speed: 0.8
+
+#设置最大行走速度，值范围从0.1到1.0
+max-walk-speed: 0.8
+
+#设置一分钟内可以发送的最大邮件量。
+mails-per-minute: 1000
+
+# 设置临时封禁可使用的最长时间（秒）。
+# 设置为-1将禁用，并且Essentials.tempban.unlimited可用于重写。
+max-tempban-time: -1
+
+# 更改默认/应答功能。这可以通过/r切换在每个玩家的基础上进行更改。
+# 如果为真，/r将指向最后一个给您发消息的人，否则将指向第一个给您发消息的人。
+# 如果是错的，/r将转到最后一个给你发信息的人那里。
+last-message-reply-recipient: true
+
+# 如果为特定的播放器启用了last-message-reply- receiver，
+# 该方法指定所需的持续时间(以秒为单位)
+# 回复收件人在收到消息时更新。
+# 默认值为180(3分钟)
+last-message-reply-recipient-timeout: 180
+
+# 切换是否用牛奶桶点击怪物将他们变成婴儿。
+milk-bucket-easter-egg: true
+
+# 切换是否应在加入时将飞行状态消息发送给玩家
+send-fly-enable-on-join: true
+
+# 设置为true可启用每个世界的权限，以便使用Essentials命令为单个世界设置时间。
+# 这适用于 /time, /day, /eday, /night, /enight, /etime.
+# 给予某人传送到某世界的权限 essentials.time.world.<worldname>.
+world-time-permissions: false
+
+# 同时为Essentials命令和外部命令指定冷却时间。
+# 所有命令都不以正斜杠（/）开头。写msg而不是/msg
+#
+# 支持通配符. E.g.
+# - '*i*': 50
+# 为所有包含字母i的命令添加50秒的冷却时间
+#
+# EssentialsX supports regex by starting the command with a caret ^
+# 例如，要以ban开头而不是banip开头的命令为目标，将使用以下命令：
+#  '^ban([^ip])( .*)?': 60 # 60 seconds /ban cooldown.  
+# Note: 如果有以^开头的命令，则可以使用反斜杠对其进行转义 (\). e.g. \^command: 123
+command-cooldowns:
+#  feed: 100 # 100 second cooldown on /feed command  
+#  '*': 5 # 5 Second cooldown on all commands
+
+# 命令冷却是否应在服务器关闭后持续
+command-cooldown-persistence: true
+
+# NPC余额是否应列在余额排名功能中，如/balancetop。
+# NPC平衡可以包括来自派系用户界面插件的派系等功能。
+npcs-in-balance-ranking: false
+
+# Allow bulk buying and selling signs when the player is sneaking.
+# 当一个标志一次出售或购买一件物品，而玩家想一次出售一堆物品时，这很有用。
+allow-bulk-buy-sell: true
+
+# 加入时玩家的MOTD显示延迟（毫秒）。
+# 如果禁用motd命令或权限，则此操作无效。
+delay-motd: 0
+
+# 默认情况下应启用其补充确认命令的命令列表。
+# 默认情况下为空，有关有效命令的最新列表，请参阅最新的源config.yml。
+default-enabled-confirm-commands:
+#- pay
+#- clearinventory
+
+# 无论是否将玩家从监狱释放后回到他们原来的位置。.
+teleport-back-when-freed-from-jail: true
+
+# 在取消请求之前设置玩家接受TPA的超时时间（秒）。
+# 设置为0不超时。
+tpa-accept-cancellation: 120
+
+# 允许玩家通过点击头盔槽来设置帽子。
+allow-direct-hat: true
+
+# 允许游戏内的玩家在运行/broadcastworld时指定一个世界。
+# 如果错误，运行/广播世界在游戏中总是会发送一个消息到玩家的当前世界。
+# 这并不影响从控制台运行命令，控制台总是需要一个world。
+allow-world-in-broadcastworld: true
+
+# 认为水块是“安全的”，因此允许玩家传送
+# 使用命令（如/home或/spawn）到已占用的位置
+# by water blocks
+is-water-safe: false
+
+# 用户地图是否应该在保存用户名之前对其进行清理?
+# 如果你在中国玩mc请设置为false
+safe-usermap-names: false
+
+# 当命令块执行命令时，essential输出日志吗?
+# 例如:命令锁在<x>，<y>，<z>发出服务器命令:/<命令></z></y></x>
+log-command-block-commands: true
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   EssentialsHome                     | #
+# +------------------------------------------------------+ #
+############################################################
+
+# 允许人们在白天睡觉。
+update-bed-at-daytime: true
+
+# 设置为true时 允许玩家使用home在世界之间传送
+    
+# 这只适用于 /home.
+# 通过 essentials.worlds.<worldname> 给予玩家传送某世界的权限
+world-home-permissions: false
+
+# 允许玩家拥有多个家。
+# 玩家需要Essentials.setHome.multiple才能拥有一个以上的家。
+# 您可以使用下面的“默认”列组设置home的默认数量。
+# 要完全取消home限制，请给人们“Essentials.setHome.multiple.unlimited”。
+# 要向不同的人授予不同的家庭额度，您需要在下面定义一个“home-rank”。
+# 在下面创建“home-rank” ,并给予匹配的权限: essentials.sethome.multiple.<home-rank>
+# For more information, visit http://wiki.ess3.net/wiki/Multihome
+sethome-multiple:
+# 默认数量
+  default: 2
+# 自定义数量, 权限为 essentials.sethome.multiple.vip
+  vip: 5
+  staff: 10
+
+# 在这个例子中 'essentials.sethome.multiple' 和 'essentials.sethome.multiple.vip' 会拥有5个home.
+# 记住，它们必须同时拥有两个权限节点才能设置多个home
+
+# 控制玩家是否需要“essential .home.compass”的许可才能指向
+# 玩家的指南针在他们的第一个家。
+#
+# 把这当作假将保留本质的原始行为，这是永远
+# 改变指南针的方向，指向他们的第一个家。
+compass-towards-home-perm: false
+
+# 设置使用/火球生成的投射物的最大速度。
+max-projectile-speed: 8
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    EssentialsEco                     | #
+# +------------------------------------------------------+ #
+############################################################
+
+# For more information, visit http://wiki.ess3.net/wiki/Essentials_Economy
+
+# 定义新玩家开始时的金币. 默认0.
+starting-balance: 0
+
+# worth-# 定义物品的价格,用来使玩家输入"/sell"后,以这种价格将物品卖给服务器.
+# 现在该项设置的文件是worth.yml
+
+# 定义玩家每次使用命令时所要花的钱,空格由"-"代替,带有"example"的是例子.
+# 一些命令例如/repair拥有独立的花费,可以在essentials wiki查看更多信息
+command-costs:
+  # /example costs $1000 PER USE
+  #example: 1000
+  # /kit tools costs $1500 PER USE
+  #kit-tools: 1500
+
+# 将此设置为要使用的货币符号。设置该项为一个你想使用的货币符号(译注:货币符号(双字节)有"￥"、"＄"、"￠"和"￡"等).
+# 记住，如果你想在这个文档中使用特殊字符，
+# 例如重音字母，您必须将文件保存为utf-8，而不是ansi。
+currency-symbol: '￥'
+
+# 设置玩家可以拥有的最大金币。
+# 由于Java的限制，该量始终限制在10兆。
+max-money: 10000000000000
+
+# 设置玩家可以拥有的最小金额（必须高于最大金额的负数）
+# 设置为0，将完全禁用透支/贷款.  玩家需要 'essentials.eco.loan' 的权限才能低于0.
+min-money: 0
+
+# 启用此选项可记录与/trade/buy/sell标志和sell命令的所有交互。
+economy-log-enabled: false
+
+# 使用/支付的最低可接受金额。
+minimum-pay-amount: 0.001
+
+# 货币的格式，不包括符号。有关符号配置，请参见货币符号格式区域设置。
+#
+# "#,##0.00" is how the majority of countries display currency.
+#currency-format: "#,##0.00"
+
+# 货币符号格式。一些地区使用，和。互换。
+# 由于Minecraft字体渲染错误，有些格式在游戏中无法正确显示。
+#
+# For 1.234,50 use de-DE
+# For 1,234.50 use en-US
+# For 1'234,50 use fr-ch
+#currency-symbol-format-locale: en-US
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   EssentialsHelp                     | #
+# +------------------------------------------------------+ #
+############################################################
+
+# 在帮助中显示其他插件命令。
+non-ess-in-help: true
+
+# 隐藏未授予权限的插件。
+# 通过向用户/组添加权限，可以在此处重写单个插件的真值。
+# 个人权限是：Essentials.help.<plugin>，任何具有Essentials.*或'*'的人都将看到所有帮助，无论是什么。
+# 如果启用了以下选项，则可以使用负权限删除对单个插件帮助的访问。
+hide-permissionless-help: true
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   EssentialsChat                     | #
+# +------------------------------------------------------+ #
+############################################################
+
+# This section requires the EssentialsChat.jar to work.
+
+chat:
+
+ # 设置聊天半径,如果安装了EssentialsChat,这将设置玩家喊话的可见范围,以格为单位.设置为0则允许全图聊天.
+# 注意开启了间谍模式(权限:essentialsX.chat.spy)的玩家将看到所有聊天内容,无视该设置.
+# 拥有"essentialsX.chat.shout"权限的玩家可以忽视该设置,只要在聊天内容前面加上"!"符号即可(小写感叹号)；
+# 或者拥有"essentialsX.chat.question"权限的玩家可以忽视该设置,只要在聊天内容前面加上"?"符号即可(小写问号)；
+# 你可以添加使用上两行方法的花销,在上经济设置中的"command-costs"下添加"chat-shout"和"chat-question"的设置即可.
+  radius: 0
+
+  # 聊天格式可以通过两种方式实现，您可以为所有聊天定义标准格式。
+  # 或者您可以提供一个特定于组的聊天格式，以提供一些额外的变化。
+  # 有关聊天格式的更多信息，请查看 wiki: http://wiki.ess3.net/wiki/Chat_Formatting
+  # 对于EssentialsX的更改，请查看EssentialsX wiki: https://github.com/EssentialsX/Essentials/wiki
+
+  format: '{DISPLAYNAME} {MESSAGE}'
+  #format: '&7[{GROUP}]&r {DISPLAYNAME}&7:&r {MESSAGE}'
+  #format: '&7{PREFIX}&r {DISPLAYNAME}&r &7{SUFFIX}&r: {MESSAGE}'
+
+  group-formats:
+  #  Default: '{WORLDNAME} {DISPLAYNAME}&7:&r {MESSAGE}'
+  #  Admins: '{WORLDNAME} &c[{GROUP}]&r {DISPLAYNAME}&7:&c {MESSAGE}'
+
+  # 如果使用组格式，请确保删除“#”以允许读取设置。
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Essentials Protect                   | #
+# +------------------------------------------------------+ #
+############################################################
+
+# 此部分需要EssentialsProtect.jar才能工作。
+
+protect:
+
+  # 普通物理/行为修改。
+  prevent:                                               # 阻止以下现象(译注:true就是阻止,false是允许,这里需要注意一下) 
+    lava-flow: false                                     # 阻止 岩浆的流动
+    water-flow: false                                    # 阻止 水的流动
+    water-bucket-flow: false                             # 阻止 水桶水的流动
+    fire-spread: true                                    # 阻止 火的传播
+    lava-fire-spread: true                               # 阻止 岩浆引起的火的传播
+    flint-fire: false                                    # 阻止 打火石产生火
+    lightning-fire-spread: true                          # 阻止 闪电引起的火的传播
+    portal-creation: false                               # 阻止 传送门的创造
+    tnt-explosion: false                                 # 阻止 TNT的爆炸
+    tnt-playerdamage: false                              # 阻止 TNT对玩家造成伤害
+    tnt-minecart-explosion: false                        # 阻止 TNT矿车 爆炸
+    tnt-minecart-playerdamage: false                     # 阻止 TNT矿车 对玩家造成伤害
+    fireball-explosion: false                            # 阻止 火球的爆炸(译注:恶魂发射的火球)
+    fireball-fire: false                                 # 阻止 火球的燃烧
+    fireball-playerdamage: false                         # 阻止 火球对玩家造成伤害
+    witherskull-explosion: false                         # 阻止 凋零攻击的爆炸
+    witherskull-playerdamage: false                      # 阻止 凋零攻击对玩家照成伤害
+    wither-spawnexplosion: false                         # 阻止 凋零出生时的爆炸
+    wither-blockreplace: false                           # 阻止 凋零破坏方块
+    creeper-explosion: false                             # 阻止 爬行者的爆炸
+    creeper-playerdamage: false                          # 阻止 爬行者对玩家造成伤害
+    creeper-blockdamage: true                           # 阻止 爬行者炸毁方块
+    enderdragon-blockdamage: true                        # 阻止 末影龙破坏方块
+    enderman-pickup: true                               # 阻止 末影人拾取方块
+    villager-death: false                                # 阻止 村民被杀死
+    # 若改为true,怪物将不会跟随玩家
+    # 具有权限"essentials.protect.entitytarget.bypass"的玩家将无视该项.
+    entitytarget: false
+    #  阻止生物的出生(true就是阻止,false是允许)
+    spawn:
+      creeper: false             #阻止 爬行者     的生成
+      skeleton: false            #阻止 骷髅       的生成
+      spider: false              #阻止 蜘蛛       的生成
+      giant: false               #阻止 巨型僵尸   的生成
+      zombie: false              #阻止 僵尸       的生成
+      slime: false               #阻止 史莱姆     的生成
+      ghast: false               #阻止 恶魂       的生成
+      pig_zombie: false          #阻止 僵尸猪人   的生成
+      enderman: false            #阻止 末影人     的生成
+      cave_spider: false         #阻止 洞穴蜘蛛   的生成
+      silverfish: false          #阻止 蠹虫       的生成
+      blaze: false               #阻止 烈焰人     的生成
+      magma_cube: false          #阻止 岩浆史莱姆 的生成
+      ender_dragon: false        #阻止 末影龙     的生成
+      pig: false                 #阻止 猪         的生成
+      sheep: false               #阻止 羊         的生成
+      cow: false                 #阻止 牛         的生成
+      chicken: false             #阻止 鸡         的生成
+      squid: false               #阻止 乌贼       的生成
+      wolf: false                #阻止 狼         的生成
+      mushroom_cow: false        #阻止 哞菇       的生成
+      snowman: false             #阻止 雪人       的生成
+      ocelot: false              #阻止 豹猫       的生成
+      iron_golem: false          #阻止 铁傀儡     的生成
+      villager: false            #阻止 村民       的生成
+      wither: false              #阻止 凋零       的生成
+      bat: false                 #阻止 蝙蝠       的生成
+      witch: false               #阻止 女巫       的生成
+      horse: false
+
+  # 爬行着可以爆炸的最大高度,-1将允许它在任何位置爆炸.
+  # 如果你想要彻底阻止它的爆炸的话,设置上面的prevent一栏中的creeper-explosion为true.
+  creeper:
+    max-height: -1
+
+  # 取消几种默认的物理现象或行为(译注:伤害大多数对玩家而言,对怪物仍有效)
+  disable:
+    # 取消掉落伤害
+    fall: false
+
+    # 拥有"essentials.protect.pvp"权限的玩家将仍可以攻击其他玩家
+    # 若设置为true,没有上述权限的玩家将无法攻击其他玩家
+    pvp: false
+
+    # 取消溺水和窒息的伤害
+    # (分为两项,通常,你会想要设置两项为同样设置)
+    drown: false          # 取消溺水伤害
+    suffocate: false      # 取消窒息伤害(被埋在方块中,例如沙子)
+
+    # 取消岩浆伤害,但掉落岩浆中的物品将仍被烧成灰烬
+    lavadmg: false
+
+    # 取消弓箭伤害
+    projectiles: false
+
+    # 取消仙人掌伤害
+    contactdmg: false
+
+    # 取消火焰伤害
+    firedmg: false
+
+    # 取消被雷劈的伤害
+    lightning: false
+
+    # 取消"凋零"效果伤害
+    wither: false
+
+    # 禁用某些天气
+    weather:                 # 禁用雨天,寒冷生态环境为雪天
+      storm: false           # 禁用雷电
+      thunder: false         # 禁用闪电
+      lightning: false
+
+############################################################
+# +------------------------------------------------------+ #
+# |                Essentials 建筑控制                     | #
+# +------------------------------------------------------+ #
+############################################################
+
+  # This section requires the EssentialsAntiBuild.jar to work.
+  # Disable various default physics and behaviors
+  # 查看更多信息,请访问 http://wiki.ess3.net/wiki/AntiBuild
+
+    # 玩家是否可以建造: 
+    # 设置为 true 可以禁用那些没有权限玩家的建造
+    # 设置为 false 将使 EssentialsAntiBuild 从不阻止玩家建造
+    build: true
+
+    # 玩家是否可以使用物品: 
+    # 设置为 true 可以禁用那些没有权限玩家的使用物品
+    # 设置为 false 将使 EssentialsAntiBuild 从不阻止玩家使用物品
+    use: true
+
+    # 玩家无法建造时是否提示玩家
+    warn-on-build-disallow: true
+    
+  # 当以下方块被放置或破坏,或物品被使用时会出现警告
+  # 你加载了一次Essentials后,就可以在plugins/Essentials/items.csv中找到物品ID列表.
+  # 10 = 动态岩浆 :: 11 = 静态岩浆 :: 46 = TNT :: 327 = 岩浆桶
+  alert:
+    on-placement: 
+    on-use: 
+    on-break:
+
+  blacklist:
+
+    # 阻止玩家放置以下方块
+    placement:
+
+    # 阻止玩家使用以下物品
+    usage:
+
+    # 阻止玩家破坏以下方块
+    break:
+
+     # 阻止活塞推动以下方块
+    piston:
+
+    # 阻止发射器发射以下物品
+    dispenser:
+
+############################################################
+# +------------------------------------------------------+ #
+# |            Essentials 出生设置 / 新玩家设置            | #
+# +------------------------------------------------------+ #
+############################################################
+
+# This section requires essentialsspawn.jar to work.
+
+newbies:
+  # 是否显示某玩家第一次进服时的欢迎信息
+  # 若开启,编辑内容,{DISPLAYNAME}将自动转换为玩家名字.
+  # 若取消,改为''
+  announce-format: '&d欢迎新玩家{DISPLAYNAME}&d来到服务器!'
+
+  # 当我们第一次出生时,出现在哪个出生点？
+  # 如果你想要使用世界自带的出生点,则设置为"none".
+  spawnpoint: newbies
+
+  # 是否想要玩家第一次进入服务器时赠送新手礼物? 设置为 ''禁用此功能.
+  # 这个赠送不会花费金钱,也可以给予权限.
+  #kit: ''
+  kit: 'tools'
+
+# 我们应该用什么优先权来处理重生？
+# 设置为 none,     使用 vanilla          控制重生
+# 设置为 lowest,   使用 Multiverse       控制重生
+# 设置为 high,     使用 EssentialsSpawn  控制重生
+# 设置为 highest,  使用 EssentialsSpawn  强制接管重生
+respawn-listener-priority: high
+
+# 加入服务器时，我们应该使用什么优先级来处理生成？
+# 通过查看 respawn-listener-priority 来了解相关值.
+# 注意：更改此选项可能会影响或中断spawn-on-join功能。
+spawn-join-listener-priority: high
+
+# 当用户死亡时，他们应该在他们的第一个家或床上重生，而不是在spawn点？
+respawn-at-home: false
+
+# 所有玩家进入游戏时传送至spawn点
+spawn-on-join: false
+# 以下值的“客人”声明，所有的球员在组“客人”将传送产卵时加入。
+#spawn-on-join: guests
+# 下面的列表值说明了组“来宾”和“管理员”中的所有玩家在加入时将被传送到衍生。
+#spawn-on-join:
+#- guests
+#- admin
+
+# End of file <-- 事实上，你已经完成配置了。
